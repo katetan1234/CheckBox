@@ -4,9 +4,18 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "archiver": "~0.4.6",
-    "cors": "^2.7.1",
-    "express": "3.x",
-    "marked": "2.9"
+    "archiver": "~0.4.10",
+    "cors": "~2.8.1",
+    "express": "~3.21.2",
+    "marked": "0.2.9",
+    "fs": "0.0.1-security",
+    "json5": "~0.5.1",
+    "jade": "~1.11.0",
+    "underscore": "~1.8.3",
+    "mongodb": "~2.2.22",
+    "validator": "~6.2.1",
+    "emailjs": "~1.0.8",
+    "crypto": "0.0.3",
+    "async": "~2.1.4"
   }
 }
