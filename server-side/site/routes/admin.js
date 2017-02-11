@@ -3,7 +3,7 @@ var check = require('validator').check;
 var _ = require('underscore');
 var emailjs = require('emailjs');
 var fileService = require('./upload.js');
-
+console.log("admin");
 var Server = mongo.Server,
     Db = mongo.Db,
     ObjectID = require('mongodb').ObjectID;
@@ -14,7 +14,7 @@ var emailServer  = emailjs.server.connect({
    host:    "smtp.gmail.com", 
    ssl:     true
 });
-
+  console.log("admin!");
 var MongoClient = mongo.MongoClient;
 var db = null;
 MongoClient.connect("mongodb://localhost:27017/site?authSource=admin", function(err, authdb) {
