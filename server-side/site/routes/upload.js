@@ -11,9 +11,9 @@ var archiver = require('archiver');
 
 var Server = mongo.Server,
     Db = mongo.Db,
-    ObjectID = mongo.BSONPure.ObjectID;
+    ObjectID = require('mongodb').ObjectID;
 
-var MongoClient = mongo.MongoClient;
+var MongoClient = require('mongodb').MongoClient;
 var db = null;
 MongoClient.connect("mongodb://user:password@ip:27017/files?authSource=admin", function(err, authdb) {
   // Now you can use the database in the db variable

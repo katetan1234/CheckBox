@@ -6,7 +6,7 @@ var fileService = require('./upload.js');
 
 var Server = mongo.Server,
     Db = mongo.Db,
-    ObjectID = mongo.BSONPure.ObjectID;
+    ObjectID = require('mongodb').ObjectID;
  
 var emailServer  = emailjs.server.connect({
    user:    "supportemail@domain.com", 

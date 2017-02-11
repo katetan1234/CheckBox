@@ -12,7 +12,7 @@
     "json5": "~0.5.1",
     "jade": "~1.11.0",
     "underscore": "~1.8.3",
-    "mongodb": "~2.2.22",
+    "mongodb": "~2.0.55",
     "validator": "~6.2.1",
     "emailjs": "~1.0.8",
     "crypto": "0.0.3",
