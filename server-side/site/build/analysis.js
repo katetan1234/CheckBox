@@ -44,24 +44,29 @@ function FunctionBuilder()
 	this.Returns = 0;
 	//
 	this.MaxMessageChains = 0;
+	this.StartLine    = 0;
+  this.EndLine      = 0;
 
 	this.report = function()
 	{
-		console.log(
-		   (
-		   	"{0}(): {1}\n" +
-		   	"============\n" +
-			   "SimpleCyclomaticComplexity: {2}\t" +
-				"MaxNestingDepth: {3}\t" +
-				"MaxConditions: {4}\t" +
-				"Parameters: {5}\t" +
-				"Returns: {6}\t" +
-				"MaxMessageChains: {7}\n\n"
-			)
-			.format(this.FunctionName, this.StartLine,
-				     this.SimpleCyclomaticComplexity, this.MaxNestingDepth,
-			        this.MaxConditions, this.ParameterCount, this.Returns, this.MaxMessageChains)
-		);
+		// console.log(
+		//    (
+		//    	"{0}(): {1}\n" +
+		//    	"============\n" +
+		// 	   "SimpleCyclomaticComplexity: {2}\t" +
+		// 		"MaxNestingDepth: {3}\t" +
+		// 		"MaxConditions: {4}\t" +
+		// 		"Parameters: {5}\t" +
+		// 		"Returns: {6}\t" +
+		// 		"MaxMessageChains: {7}\n\n"
+		// 	)
+		// 	.format(this.FunctionName, this.StartLine,
+		// 		     this.SimpleCyclomaticComplexity, this.MaxNestingDepth,
+		// 	        this.MaxConditions, this.ParameterCount, this.Returns, this.MaxMessageChains)
+		// );
+		if (this.MaxConditions > 8 || this.MaxNestingDepth > 3 || this.EndLine - this.StartLine > 100) {
+			console.log("fail");
+		}
 	}
 };
 
@@ -78,13 +83,13 @@ function FileBuilder()
 
 	this.report = function()
 	{
-		console.log (
-			( "{0}\n" +
-			  "~~~~~~~~~~~~\n"+
-			  "ImportCount {1}\t" +
-			  "Strings {2}\t" +
-				"Conditions {3}\n"
-			).format( this.FileName, this.ImportCount, this.Strings, this.AllConditions ));
+		// console.log (
+		// 	( "{0}\n" +
+		// 	  "~~~~~~~~~~~~\n"+
+		// 	  "ImportCount {1}\t" +
+		// 	  "Strings {2}\t" +
+		// 		"Conditions {3}\n"
+		// 	).format( this.FileName, this.ImportCount, this.Strings, this.AllConditions ));
 	}
 }
 
@@ -145,13 +150,15 @@ function complexity(filePath)
 	{
 		if (node.type === 'FunctionDeclaration')
 		{
+
 			var builder = new FunctionBuilder();
 			var paraNum = 0;
 			//ParameterCount
 			for (var p in node.params) {
 					builder.ParameterCount += 1;
 			}
-
+			builder.StartLine    = node.loc.start.line;
+			builder.EndLine      = node.loc.end.line;
 			builder.FunctionName = functionName(node);
 			builder.StartLine    = node.loc.start.line;
 			builders[builder.FunctionName] = builder;
@@ -271,6 +278,10 @@ function isDecision(node)
 // Helper function for counting nesting
 function nestDepth(child)
 {
+
+	if (!child) {
+		return 0;
+	}
 	if (isDecision(child))
 	{
 		max = 0;
