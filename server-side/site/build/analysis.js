@@ -64,8 +64,14 @@ function FunctionBuilder()
 		// 		     this.SimpleCyclomaticComplexity, this.MaxNestingDepth,
 		// 	        this.MaxConditions, this.ParameterCount, this.Returns, this.MaxMessageChains)
 		// );
-		if (this.MaxConditions > 8 || this.MaxNestingDepth > 3 || this.EndLine - this.StartLine > 100) {
-			console.log("fail");
+		if (this.MaxConditions > 8) {
+			console.log("fail, MaxConditions > 8");
+		}
+		if (this.MaxNestingDepth > 3) {
+			console.log("fail, big O > O(n^3)");
+		}
+		if (this.EndLine - this.StartLine > 100) {
+			console.log("fail, long method(> 100 lines)");
 		}
 	}
 };
